@@ -1,0 +1,112 @@
+### Environment variables
+@baseUrl = http://localhost:3000
+
+### ==================== ROLE REQUESTS ====================
+
+### GET: Lấy tất cả vai trò
+GET {{baseUrl}}/api/roles
+
+### GET: Lấy vai trò theo ID
+GET {{baseUrl}}/api/roles/r1
+
+### GET: Lấy tất cả người dùng trong vai trò r1 (Quản trị viên)
+GET {{baseUrl}}/api/roles/r1/users
+
+### GET: Lấy tất cả người dùng trong vai trò r2 (Biên tập viên)
+GET {{baseUrl}}/api/roles/r2/users
+
+### GET: Lấy tất cả người dùng trong vai trò r3 (Người dùng)
+GET {{baseUrl}}/api/roles/r3/users
+
+### POST: Tạo vai trò mới
+POST {{baseUrl}}/api/roles
+Content-Type: application/json
+
+{
+  "name": "Nhân viên",
+  "description": "Tài khoản nhân viên"
+}
+
+### PUT: Cập nhật vai trò
+PUT {{baseUrl}}/api/roles/r1
+Content-Type: application/json
+
+{
+  "name": "Quản trị viên hệ thống",
+  "description": "Toàn quyền quản lý hệ thống và dữ liệu"
+}
+
+### DELETE: Xóa vai trò
+DELETE {{baseUrl}}/api/roles/r3
+
+### ==================== USER REQUESTS ====================
+
+### GET: Lấy tất cả người dùng
+GET {{baseUrl}}/api/users
+
+### GET: Lấy người dùng theo username
+GET {{baseUrl}}/api/users/nguyenvana
+
+### POST: Tạo người dùng mới
+POST {{baseUrl}}/api/users
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "password123",
+  "email": "testuser@gmail.com",
+  "fullName": "Test User",
+  "avatarUrl": "https://i.sstatic.net/l60Hf.png",
+  "status": true,
+  "role": {
+    "id": "r3"
+  }
+}
+
+### POST: Tạo người dùng với vai trò biên tập viên
+POST {{baseUrl}}/api/users
+Content-Type: application/json
+
+{
+  "username": "neweditor",
+  "password": "editor123",
+  "email": "neweditor@gmail.com",
+  "fullName": "New Editor",
+  "avatarUrl": "https://i.sstatic.net/l60Hf.png",
+  "status": true,
+  "role": {
+    "id": "r2"
+  }
+}
+
+### PUT: Cập nhật thông tin người dùng
+PUT {{baseUrl}}/api/users/nguyenvana
+Content-Type: application/json
+
+{
+  "email": "vana.updated@gmail.com",
+  "fullName": "Nguyễn Văn A Updated",
+  "status": true
+}
+
+### PUT: Cập nhật vai trò người dùng
+PUT {{baseUrl}}/api/users/tranthib
+Content-Type: application/json
+
+{
+  "role": {
+    "id": "r1"
+  }
+}
+
+### PATCH: Tăng login count
+PATCH {{baseUrl}}/api/users/nguyenvana/login-count
+
+### PATCH: Tăng login count multiple times
+PATCH {{baseUrl}}/api/users/levanc/login-count
+
+### DELETE: Xóa người dùng
+DELETE {{baseUrl}}/api/users/testuser
+
+### DELETE: Xóa người dùng khác
+DELETE {{baseUrl}}/api/users/phamthid
